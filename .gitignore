@@ -1,2 +1,6 @@
 *.exe
 *.log
+main/bills/
+nohup.out
+main
+*.json
