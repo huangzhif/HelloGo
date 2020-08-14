@@ -34,10 +34,11 @@ func Calltcapi() {
 	var thisMonth int
 	var wg sync.WaitGroup
 
-	//获取当前目录
-	thisdir, _ := os.Getwd()
-	if !utils.PathExist(thisdir + "/bills") {
-		os.MkdirAll(thisdir+"/bills", 0755)
+	//获取项目目录
+	projdir := os.Getenv("PROJPATH")
+
+	if !utils.PathExist(projdir + "/billinfo/files_dir/tencent") {
+		os.MkdirAll(projdir+"/billinfo/files_dir/tencent", 0755)
 	}
 
 	//读取ak/sk配置文件，格式：
@@ -50,7 +51,7 @@ func Calltcapi() {
 			}]
 		}
 	*/
-	ret := utils.GetJsonContent("/opt/HelloGo/tencent/conf.json")
+	ret := utils.GetJsonContent("../tencent/conf.json")
 	var tconfigs utils.Tcconfigs
 
 	json.Unmarshal(ret, &tconfigs)
@@ -65,7 +66,7 @@ func Calltcapi() {
 			for month := 1; month <= thisMonth; month++ {
 				bc := strconv.Itoa(year) + "-" + fmt.Sprintf("%02d", month)
 				filename := tconfigs.Tcconfigs[cf].Mainpart + "-" + bc + ".json"
-				abpath := thisdir + "/bills/" + filename
+				abpath := projdir+"/billinfo/files_dir/tencent/"+ filename
 
 				// 云厂商api限制，防止一秒内太频繁地调用
 				time.Sleep(1 * time.Second)

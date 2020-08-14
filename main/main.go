@@ -1,9 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"HelloGo/utils"
+	"os"
 
 	"github.com/robfig/cron"
 
@@ -11,18 +10,7 @@ import (
 )
 
 func test() {
-	fmt.Println("test:")
-
-	ret := utils.GetJsonContent("")
-	var tconfigs utils.Tcconfigs
-
-	json.Unmarshal(ret, &tconfigs)
-
-	for i := 0; i < len(tconfigs.Tcconfigs); i++ {
-		fmt.Println("AK:" + tconfigs.Tcconfigs[i].AK)
-		fmt.Println("SK:" + tconfigs.Tcconfigs[i].SK)
-		fmt.Println("Mainpart:" + tconfigs.Tcconfigs[i].Mainpart)
-	}
+    fmt.Println(os.Getenv("PROJPATH"))
 }
 
 func main() {
