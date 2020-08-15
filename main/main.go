@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/robfig/cron"
+	"github.com/robfig/cron/v3"
 
 	"HelloGo/tencent"
 )
