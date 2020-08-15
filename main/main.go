@@ -14,7 +14,7 @@ func test() {
 }
 
 func main() {
-	c := cron.New()
+	c := cron.New(cron.WithSeconds())
 	c.AddFunc("0 */60 9-19 * * *", tencent.Calltcapi)
 
 	go c.Start()
